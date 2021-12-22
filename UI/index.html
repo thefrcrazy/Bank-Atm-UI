@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>UI By TheFRcRaZy</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
+    <!-- <script src="nui://game/ui/jquery.js" type="text/javascript"></script> -->
+    <script src="script/script-bank.js"></script>
+    <link rel="stylesheet" href="css/style-bank.css">
+
+    <script src="script/script-atm.js"></script>
+    <link rel="stylesheet" href="css/style-atm.css">
+  </head>
+  <body>
+
+    <div class="bank">
+
+      <div class="bank-notify">
+        <div class="bank-notify-box">
+          <!-- <div class="bank-notify-box-icon">
+            <i class="fas fa-check"></i>
+          </div>
+          <p>Ceci est une notification</p>
+          <div class="bank-notify-box-btns">
+            <button id="bank-notify-box-close">Fermer</button>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="bank-confirm">
+        <div class="bank-confirm-box">
+          <!-- <div class="bank-confirm-box-icon">
+            <i class="fa fa-exclamation"></i>
+          </div>
+          <header>Confirmer ?</header>
+          <p>Etes vous sûr de continuer, cette action sera irréversible</p>
+          <div class="bank-confirm-box-btns">
+            <button id="bank-confirm-box-yes">Oui</button>
+            <button id="bank-confirm-box-no">Non</button>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="bank-transfer">
+        <div class="bank-transfer-box">
+          <!-- <div class="bank-transfer-box-accountList">
+              <header>Transférer à: *</header>
+              <select id="accountList-select" required>
+                <option name="" value="" selected>Aucun</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="hamster">Hamster</option>
+                <option value="parrot">Parrot</option>
+                <option value="spider">Spider</option>
+                <option value="iban">IBAN</option>
+              </select>
+            </div>
+
+            <div class="bank-transfer-box-iban">
+              <header>Entrer IBAN *</header>
+              <input class="input-transfer-iban" id="iban-one" required placeholder="00" name="number" type="number" min="01" max="999" oninput="initInputIbanBank(this)">
+              -
+              <input class="input-transfer-iban" id="iban-two" required placeholder="00" name="number" type="number" min="01" max="999" oninput="initInputIbanBank(this)">
+              -
+              <input class="input-transfer-iban" id="iban-three" required placeholder="00" name="number" type="number" min="01" max="999" oninput="initInputIbanBank(this)">
+            </div>
+
+            <div class="bank-transfer-box-amount">
+              <header>Montant *</header>
+              <input id="input-transfer-amount" required placeholder="918273645" name="number" type="number" oninput="initInputAmountBank(this)" min="1" max="999999999">
+            </div>
+
+            <div class="bank-transfer-box-btns">
+              <input id="bank-transfer-box-yes" type="button" value="Envoyer">
+              <input id="bank-transfer-box-no" type="button" value="Annuler">
+            </div> -->
+        </div>
+      </div>
+
+      <div class="bank-deposit-withdraw">
+        <div class="bank-deposit-withdraw-box">
+          <!-- <div class="bank-deposit-withdraw-box-amount">
+            <header>Montant à deposer *</header>
+            <input id="input-deposit-withdraw-amount" required placeholder="918273645" name="number" type="number" oninput="initInputAmountBank(this)" min="1" max="999999999">
+          </div>
+
+          <div class="bank-deposit-withdraw-box-btns">
+            <input id="bank-deposit-withdraw-box-confirm" type="button" value="Déposer">
+            <input id="bank-deposit-withdraw-box-cancel" type="button" value="Annuler">
+          </div> -->
+        </div>
+      </div>
+
+      <div class="bank-newAccount">
+        <div class="bank-newAccount-box">
+          <!-- <div class="bank-newAccount-box-accountTypetList">
+            <header>Type de compte personnel: *</header>
+            <select id="accountTypetList-select" required>
+              <option name="" value="" selected>Aucun</option>
+              <option value="courant">Courant</option>
+              <option value="epargne">Epargne</option>
+            </select>
+          </div>
+
+          <div class="bank-newAccount-box-btns">
+            <input id="bank-newAccount-box-create" type="button" value="Crée">
+            <input id="bank-newAccount-box-cancel" type="button" value="Annuler">
+          </div> -->
+        </div>
+      </div>
+
+      <div class="bank-verticalBar">
+
+        <div class="bank-verticalBar-head">
+          <img class="bank-verticalBar-head-logo" src="img/logo.png">
+					<span class="bank-verticalBar-head-text">Maze Bank</span>
+        </div>
+
+        <div class="bank-verticalBar-options">
+          <div class="bank-verticalBar-buttons" id="home">
+						<span class="bank-verticalBar-text">🏚️ | Accueil</span>
+					</div>
+          <div class="bank-verticalBar-buttons" id="newAccount">
+						<span class="bank-verticalBar-text">➕ | Crée un compte</span>
+					</div>
+          <div class="bank-verticalBar-buttons" id="quit">
+						<span class="bank-verticalBar-text">❌ | Quitter</span>
+					</div>
+
+          <div class="bank-verticalBar-buttons-separator"></div>
+
+
+          <div class="bank-verticalBar-buttons-accountsList">
+            
+            <!-- <div class="bank-verticalBar-buttons-account" id="button-display-Compte N°17135">
+              <span class="bank-verticalBar-buttons-account-text">
+                Compte N°17135
+                <br>
+                Propriétaire: Gouvernement
+                <br>
+                Type: Courant
+              </span>
+            </div> -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="bank-home">
+        <div class="bank-home-container">
+          <!-- <div class="bank-home-container-box" id="Compte N°17135">
+						<span class="box-title">Compte N°17135</span>
+						<span class="box-desc">
+              180 006 $
+              <br><br>
+              Propriétaire: Gouvernement
+              <br><br>
+              IBAN: 51-17-25
+            </span>
+            <button class="box-button" id="button-display-Compte N°17135">Détails</button>
+					</div> -->
+        </div>
+      </div>
+
+      <div class="bank-account">
+        <div class="bank-account-container">
+
+          <div class="bank-account-balance">
+						<!-- <span class="bank-account-balance-text">Compte N°1712</span>
+						<span class="bank-account-balance-balance">0 $</span> -->
+					</div>
+
+          <div class="bank-account-chart">
+            <div id="bank-account-chart-myShart"></div>
+          </div>
+          
+          <div class="bank-account-info">
+						<!-- <span class="bank-account-info-text">Informations</span>
+            <span class="bank-account-info-desc">
+              Propriétaire: Gouvernement
+              <br><br>
+              Ouverture par: Copel Luke
+              <br><br>
+              Type: epargne
+              <br><br>
+              IBAN: 51-17-25
+            </span>
+            <button class="bank-account-info-iban" data-iban="51-17-25">IBAN</button>
+            <button class="bank-account-info-give" data-account="Compte N°1712">Virement</button>
+            <button class="bank-account-info-delete" data-account="Compte N°1712">Supprimer</button> -->
+					</div>
+
+          <div class="bank-account-info-rightbar">
+
+            <div class="bank-account-info-rigthbar-chart">
+              <div id="bank-account-info-rigthbar-chart-myPlot"></div>
+            </div>
+
+            <div class="bank-account-info-rightbar-separator"></div>
+
+            <div class="bank-account-info-rigthbar-history">
+              <!-- <div class="bank-account-info-rigthbar-history-box" id="bank-history-box-remove">
+                <span class="bank-account-info-rigthbar-history-box-label">Concession</span>
+                <span class="bank-account-info-rigthbar-history-box-desc">Achat de: Truffade Thrax</span>
+                <span class="bank-account-info-rigthbar-history-box-amount" id="bank-history-amount-remove">5 270 186 $</span>
+                <img class="bank-account-info-rigthbar-history-box-img" src="img/bg-button.png">
+              </div> -->
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="atm">
+      <div class="atm-container-up">
+        <header>ATM</header>
+      </div>
+
+      <div class="atm-container">
+        <div class="atm-container-button-left">
+          <button class="atm-buttons" onclick="clickButton(this)" id="atm-button-1" data-account=null data-type="deposit" data-nbr="1"><i class="fas fa-chevron-right"></i></i></button>
+          <button class="atm-buttons" onclick="clickButton(this)" id="atm-button-3" data-account=null data-type="transfer" data-nbr="3"><i class="fas fa-chevron-right"></i></i></button>
+          <button class="atm-buttons" onclick="clickButton(this)" id="atm-button-5" data-account=null data-nbr="5"><i class="fas fa-chevron-right"></i></i></button>
+          <button class="atm-buttons" id="atm-button-7" data-account=null><i class="fas fa-chevron-right"></i></i></button>
+        </div>
+
+        <div class="atm-container-screen">
+
+          <div class="atm-notify">
+            <div class="atm-notify-box">
+              <!-- <div class="atm-notify-box-icon">
+                <i class="fas fa-check"></i>
+              </div>
+              <p>Ceci est une notification</p>
+              <div class="atm-notify-box-btns">
+                <button id="atm-notify-box-close">Fermer</button>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="atm-container-screen-box-left">
+            <div class="atm-screen-box-left" id="atm-screen-btn-1" data-amount="10"></div>
+            <div class="atm-screen-box-left" id="atm-screen-btn-3" data-amount="100"></div>
+            <div class="atm-screen-box-left" id="atm-screen-btn-5" data-amount="500"></div>
+            <div class="atm-screen-box-left" id="atm-screen-btn-7"></div>
+          </div>
+          <div class="atm-container-screen-box-right">
+            <div class="atm-screen-box-right" id="atm-screen-btn-2" data-amount="25"></div>
+            <div class="atm-screen-box-right" id="atm-screen-btn-4" data-amount="250"></div>
+            <div class="atm-screen-box-right" id="atm-screen-btn-6" data-amount="custom"></div>
+            <div class="atm-screen-box-right" id="atm-screen-btn-8"><a>Retour</a></div>
+          </div>
+
+          <div class="atm-container-screen-history">
+            <!-- <div class="atm-container-screen-history-box" id="bank-history-box-true">
+              <span class="atm-container-screen-history-box-label">Concession</span>
+              <span class="atm-container-screen-history-box-desc">Achat de: Truffade Thrax</span>
+              <span class="atm-container-screen-history-box-amount" id="bank-history-amount-true">5 270 186 $</span>
+              <img class="atm-container-screen-history-box-img" src="img/bg-button.png">
+            </div>
+
+            <div class="atm-container-screen-history-box" id="bank-history-box-false">
+              <span class="atm-container-screen-history-box-label">Concession</span>
+              <span class="atm-container-screen-history-box-desc">Achat de: Truffade Thrax</span>
+              <span class="atm-container-screen-history-box-amount" id="bank-history-amount-false">5 270 186 $</span>
+              <img class="atm-container-screen-history-box-img" src="img/bg-button.png">
+            </div> -->
+          </div>
+
+        </div>
+
+        <div class="atm-container-button-right">
+          <button class="atm-buttons" onclick="clickButton(this)" id="atm-button-2" data-account=null data-type="withdraw" data-nbr="2"><i class="fas fa-chevron-left"></i></i></button>
+          <button class="atm-buttons" onclick="clickButton(this)" id="atm-button-4" data-account=null data-type="history" data-nbr="4"><i class="fas fa-chevron-left"></i></i></button>
+          <button class="atm-buttons" onclick="clickButton(this)" id="atm-button-6" data-account=null data-nbr="6"><i class="fas fa-chevron-left"></i></i></button>
+          <button class="atm-buttons" onclick="goMain()" id="atm-button-8" data-account=null><i class="fas fa-chevron-left"></i></i></button>
+        </div>
+
+        <div class="atm-container-boxcard">
+
+          <div class="atm-container-boxcard-insert">
+            <div class="atm-container-boxcard-box">
+              <p>INSERT CARD</p>
+            </div>
+            <div class="atm-container-card"></div>
+          </div>
+
+          <div class="atm-container-boxcard-give">
+            <div class="atm-container-boxcard-drop"></div>
+            <p>GET</p>
+            <div class="atm-container-cash-withdraw"></div>
+          </div>
+
+        </div>
+
+        <div class="atm-container-boxcash">
+          <div class="atm-container-boxcash-drop"></div>
+          <p>CASH</p>
+          <div class="atm-container-cash-deposit"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </body>
+</html>
